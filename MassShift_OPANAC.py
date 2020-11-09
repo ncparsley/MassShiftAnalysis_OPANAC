@@ -2,7 +2,7 @@ import sys
 
 # Constants
 n_mass_shifts = 1
-mass_shift = 161.30
+mass_shift = 261.30
 total_mass_shift = mass_shift * n_mass_shifts
 tolerance = 0.05 # Da
 round_digits = 3 # Cut down on the duplicate masses
@@ -34,15 +34,9 @@ def main():
     for line in input_file:
         masses = line.split(',')
         if len(masses) != 2:
-            # Not a real line, keep going
             continue
                 
-        # There might (and probably will) be more reduced-alkylated masses than
-        # original masses. Only add a mass if it's actually there.
         if len(masses[0]) > 0:
-            # Depending on the file, there might be text like a column header or something.
-            # There's probably a more clever way to check, but for now just try to convert
-            # to a float and skip otherwise.
             try:            
                 original_masses.add(round(float(masses[0]), round_digits))
             except:
